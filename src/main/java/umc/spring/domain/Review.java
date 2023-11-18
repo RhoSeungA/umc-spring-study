@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -23,6 +24,8 @@ public class Review extends BaseEntity {
     private Member member;
 
     private String title;
+
+    private String body;
 
     private Float score;
 
