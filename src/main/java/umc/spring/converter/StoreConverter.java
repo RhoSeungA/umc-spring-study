@@ -1,6 +1,7 @@
 package umc.spring.converter;
 
 import umc.spring.domain.Review;
+import umc.spring.domain.Store;
 import umc.spring.web.dto.StoreRequestDTO;
 import umc.spring.web.dto.StoreResponseDTO;
 
@@ -20,4 +21,16 @@ public class StoreConverter {
                 .createdAt(LocalDateTime.now()).reviewId(review.getId()).build();
 
     }
+
+    public static Store toStore(StoreRequestDTO.StoreDTO request) {
+        return Store.builder().name(request.getName()).address(request.getAddress()).build();
+    }
+
+    public static StoreResponseDTO.CreateStoreResultDTO toCreateStoreResultDTO(Store store){
+        return StoreResponseDTO.CreateStoreResultDTO.builder()
+                .createdAt(LocalDateTime.now()).storeId(store.getId()).build();
+
+    }
+
+
 }
