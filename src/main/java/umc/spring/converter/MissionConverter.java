@@ -45,4 +45,7 @@ public class MissionConverter {
     }
 
 
+    public static MissionResponseDTO.UpdateMemberMissionResultDTO toUpdateMemberMissionResultDTO(MemberMission result) {
+        return MissionResponseDTO.UpdateMemberMissionResultDTO.builder().updateAt(LocalDateTime.now()).missionId(result.getId()).build();
+    }
 }

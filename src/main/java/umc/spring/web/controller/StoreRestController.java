@@ -99,7 +99,12 @@ public class StoreRestController {
 
 
     //3. 진행중인 미션 진행 완료로 바꾸기
-
+    @PatchMapping("/mission/toComplete")
+    public ApiResponse<MissionResponseDTO.UpdateMemberMissionResultDTO> toMissionComplete (@RequestParam(name = "missionId") Long missionId)
+    {
+        MemberMission result= missionCommandSerivce.updateMissionToComplete(missionId);
+        return ApiResponse.onSuccess(MissionConverter.toUpdateMemberMissionResultDTO(result));
+    }
 
 
 }

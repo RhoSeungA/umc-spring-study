@@ -6,4 +6,6 @@ import umc.spring.mapping.MemberMission;
 
 public interface MissionCommandSerivce {
     MemberMission createMemberMission(Long missionId, Long memberId);
+
+    MemberMission updateMissionToComplete(Long missionId);
 }

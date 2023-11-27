@@ -29,4 +29,11 @@ public class MissionCommandServiceImpl implements MissionCommandSerivce{
                 MemberMission.builder().mission(mission).member(member).status(MissionStatus.CHALLENGING).build();
         return memberMissionRepository.save(memberMission);
     }
+
+    @Override
+    public MemberMission updateMissionToComplete(Long missionId) {
+        MemberMission result = memberMissionRepository.findById(missionId).get();
+        result.setStatus(MissionStatus.COMPLETE);
+        return memberMissionRepository.save(result);
+    }
 }
