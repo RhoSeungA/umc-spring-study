@@ -1,8 +1,7 @@
-package umc.spring.service.StoreService;
+package umc.spring.service.MissionService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import umc.spring.converter.MissionConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.enums.MissionStatus;

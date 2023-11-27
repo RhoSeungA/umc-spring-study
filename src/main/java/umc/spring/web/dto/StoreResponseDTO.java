@@ -51,4 +51,5 @@ public class StoreResponseDTO {
         LocalDate createdAt;
     }
 
+
 }

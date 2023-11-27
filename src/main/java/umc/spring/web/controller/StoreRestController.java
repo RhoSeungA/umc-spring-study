@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Check;
 import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,8 @@ import umc.spring.domain.Mission;
 import umc.spring.domain.Review;
 import umc.spring.domain.Store;
 import umc.spring.mapping.MemberMission;
-import umc.spring.service.StoreService.MissionCommandSerivce;
+import umc.spring.service.MissionService.MissionCommandSerivce;
+import umc.spring.service.MissionService.MissionQueryService;
 import umc.spring.service.StoreService.StoreCommandService;
 import umc.spring.service.StoreService.StoreQueyrService;
 import umc.spring.validation.annotation.CheckPage;
@@ -39,6 +39,7 @@ public class StoreRestController {
     private final StoreCommandService storeCommandService;
     private  final MissionCommandSerivce missionCommandSerivce;
     private  final StoreQueyrService storeQueyrService;
+    private final MissionQueryService missionQueryService;
 
     @PostMapping("/{storeId}/reviews")
     public ApiResponse<StoreResponseDTO.CreateReviewResultDTO> createReview(@RequestBody @Valid
@@ -82,13 +83,20 @@ public class StoreRestController {
 
 
     // 내가 작성한 리뷰 목록
-    @GetMapping("/mission/member/{memberId}")
+    @GetMapping("/review/member/{memberId}")
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getMemberReviewList(@ExistMember @PathVariable(name = "memberId") Long memberId, @CheckPage @RequestParam Integer page){
         Page<Review> result = storeQueyrService.getMemberReviewList(memberId,page);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(result));
     }
 
     //2. 내가 진행중인 미션 목록
+    @GetMapping("/mission/member/{memberId}")
+    public ApiResponse<MissionResponseDTO.MemberMissionPreViewListDTO> getMemberMission(@ExistMember @PathVariable(name = "memberId") Long memberId, @CheckPage @RequestParam Integer page){
+
+        Page<MemberMission>  result = missionQueryService.getMemberMissionList(memberId,page);
+        return ApiResponse.onSuccess(MissionConverter.toMemberMissionPreViewListDTO(result));
+    }
+
 
     //3. 진행중인 미션 진행 완료로 바꾸기
 
