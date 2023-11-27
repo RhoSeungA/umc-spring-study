@@ -13,7 +13,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class MemberQueryServiceImpl implements MemberQueryService{
 
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
     @Override
     public Optional<Member> findMember(Long value) {
         return memberRepository.findById(value);

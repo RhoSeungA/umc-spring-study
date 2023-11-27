@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StoreExistsValidator implements ConstraintValidator<ExistStore,Long> {
 
-    private StoreQueyrService storeQueyrSerivce;
+    private final StoreQueyrService storeQueyrSerivce;
 
     @Override
     public void initialize(ExistStore constraintAnnotation) {
